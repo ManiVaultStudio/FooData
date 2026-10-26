@@ -52,9 +52,6 @@ source_group(Notification FILES ${NOTIFICATION_SOURCES})
 # Create dynamic library for the plugin
 add_library(${PROJECT_NAME} SHARED ${PLUGIN_SOURCES} ${NOTIFICATION_SOURCES})
 
-target_sources(${PROJECT_NAME} PRIVATE 
-    ${PLUGIN_SOURCES}
-)
 
 # Generate a header file that contains the EXPORT macro for this library.
 generate_export_header(${PROJECT_NAME} EXPORT_FILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_export.h)
