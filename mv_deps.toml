@@ -8,5 +8,5 @@
 [mv-core]
 repo = "ManiVaultStudio/core"  # The git repo
 package = "mv-core"
-ref = "master"                 # The branch to use
-match_branch = true            # Or match the branch name to this branch
+ref = "feature/vcpkg_artifactory"                 # The branch to use
+match_branch = false            # Or match the branch name to this branch
