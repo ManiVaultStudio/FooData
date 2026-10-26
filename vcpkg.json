@@ -1,0 +1,13 @@
+{
+  "name": "foodata",
+  "version": "0.1.0",
+  "dependencies": [
+    { 
+      "name": "qt6",
+      "features": [ "target-desktop" ]
+    },
+    {
+      "name": "mv-core"
+    }
+  ]
+}

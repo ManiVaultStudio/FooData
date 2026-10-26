@@ -1,0 +1,9 @@
+{
+    "name" : "Foo Data",
+    "version" :  {
+        "plugin" : "1.0",
+        "core" : ["1.5"]
+    },
+    "type" : "Data",
+    "dependencies" : []
+}
