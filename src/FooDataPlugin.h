@@ -30,7 +30,8 @@ QString getExampleNotificationMessage() {
 const mv::DataType ExampleType = mv::DataType(QString("Example"));
 
 // =============================================================================
-// Raw Data
+// Raw Data - holds a complex (magniture/phase) image as an array of 
+// std::complex<float> values
 // =============================================================================
 
 class FOODATAPLUGIN_EXPORT FooDataPlugin : public RawData {
@@ -49,7 +50,7 @@ public:
 
   std::vector<std::complex<float>>& getData();
 
-  void setData(QImage image);
+  void setData(QImage image, QImage phase);
 
 private:
   std::vector<std::complex<float>> _data;       /** Data store of the plugin, this is the core of your plugin */
