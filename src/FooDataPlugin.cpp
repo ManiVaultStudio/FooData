@@ -43,7 +43,7 @@ void FooDataPlugin::setData(QImage image, QImage phase) {
   assert(image.size() == phase.size());
   for (int y = 0; y < image.height(); y++) {
         for (int x = 0; x < image.width(); x++) {
-            cpixel = std::complex<float>(image.pixel(x, y), phase.pixel(x, y));
+            auto cpixel = std::complex<float>(image.pixel(x, y), phase.pixel(x, y));
             _data.push_back(cpixel);
         }
     }
