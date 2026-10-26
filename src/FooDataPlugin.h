@@ -33,7 +33,7 @@ const mv::DataType ExampleType = mv::DataType(QString("Example"));
 // Raw Data
 // =============================================================================
 
-class EXAMPLEDATAPLUGIN_EXPORT FooDataPlugin : public RawData {
+class FOODATAPLUGIN_EXPORT FooDataPlugin : public RawData {
 public:
   FooDataPlugin(const PluginFactory* factory) : RawData(factory, ExampleType) {}
   ~FooDataPlugin(void) override;
@@ -59,7 +59,7 @@ private:
 // Data Set
 // =============================================================================
 
-class EXAMPLEDATAPLUGIN_EXPORT ComplexSet : public mv::DatasetImpl {
+class FOODATAPLUGIN_EXPORT ComplexSet : public mv::DatasetImpl {
 public:
   ComplexSet(QString dataName, const QString& guid = "");
   ~ComplexSet() override;
