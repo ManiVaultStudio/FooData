@@ -1,5 +1,6 @@
 #include "FooDataPlugin.h"
 
+#include "notification.h"
 #include "Application.h"
 
 #include <QtCore>

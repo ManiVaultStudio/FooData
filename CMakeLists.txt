@@ -31,6 +31,8 @@ mv_project_defaults()
 set(PLUGIN_SOURCES
     src/FooDataPlugin.h
     src/FooDataPlugin.cpp
+    src/notification.h
+    src/notification.cpp
     PluginInfo.json
 )
 
