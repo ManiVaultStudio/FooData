@@ -41,13 +41,12 @@ set(PLUGIN_HEADERS
 )
 
 source_group(Plugin FILES ${PLUGIN_SOURCES})
-source_group(Common FILES ${COMMON_FILES})
 
 # -----------------------------------------------------------------------------
 # CMake Target
 # -----------------------------------------------------------------------------
 # Create dynamic library for the plugin
-add_library(${PROJECT_NAME} SHARED ${PLUGIN_SOURCES} ${COMMON_FILES})
+add_library(${PROJECT_NAME} SHARED ${PLUGIN_SOURCES})
 
 target_sources(${PROJECT_NAME} PRIVATE 
     ${PLUGIN_SOURCES}
