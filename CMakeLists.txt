@@ -31,9 +31,12 @@ mv_project_defaults()
 set(PLUGIN_SOURCES
     src/FooDataPlugin.h
     src/FooDataPlugin.cpp
+    PluginInfo.json
+)
+
+set(NOTIFICATION_SOURCES
     src/notification.h
     src/notification.cpp
-    PluginInfo.json
 )
 
 set(PLUGIN_HEADERS
@@ -41,12 +44,13 @@ set(PLUGIN_HEADERS
 )
 
 source_group(Plugin FILES ${PLUGIN_SOURCES})
+source_group(Notification FILES ${NOTIFICATION_SOURCES})
 
 # -----------------------------------------------------------------------------
 # CMake Target
 # -----------------------------------------------------------------------------
 # Create dynamic library for the plugin
-add_library(${PROJECT_NAME} SHARED ${PLUGIN_SOURCES})
+add_library(${PROJECT_NAME} SHARED ${PLUGIN_SOURCES} ${NOTIFICATION_SOURCES})
 
 target_sources(${PROJECT_NAME} PRIVATE 
     ${PLUGIN_SOURCES}
