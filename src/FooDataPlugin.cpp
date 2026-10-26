@@ -84,12 +84,12 @@ void ComplexSet::setSelectionIndices(const std::vector<std::uint32_t>& indices)
 
 bool ComplexSet::canSelect() const
 {
-    return getRawData<ExampleDataPlugin>()->getData().size() >= 1;
+    return getRawData<FooDataPlugin>()->getData().size() >= 1;
 }
 
 bool ComplexSet::canSelectAll() const
 {
-    return canSelect() && (getSelectionSize() < getRawData<ExampleDataPlugin>()->getData().size());
+    return canSelect() && (getSelectionSize() < getRawData<FooDataPlugin>()->getData().size());
 }
 
 bool ComplexSet::canSelectNone() const
@@ -109,7 +109,7 @@ void ComplexSet::selectAll()
 
     // Clear and resize
     selectionIndices.clear();
-    selectionIndices.resize(getRawData<ExampleDataPlugin>()->getData().size());
+    selectionIndices.resize(getRawData<FooDataPlugin>()->getData().size());
 
     // Generate cluster selection indices
     std::iota(selectionIndices.begin(), selectionIndices.end(), 0);
