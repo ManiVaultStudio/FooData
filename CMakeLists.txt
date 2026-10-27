@@ -29,8 +29,8 @@ mv_project_defaults()
 # -----------------------------------------------------------------------------
 # Define the plugin sources
 set(PLUGIN_SOURCES
-    src/FooDataPlugin.h
-    src/FooDataPlugin.cpp
+    src/FooData.h
+    src/FooData.cpp
     PluginInfo.json
 )
 
@@ -40,7 +40,7 @@ set(NOTIFICATION_SOURCES
 )
 
 set(PLUGIN_HEADERS
-    src/FooDataPlugin.h
+    src/FooData.h
 )
 
 source_group(Plugin FILES ${PLUGIN_SOURCES})

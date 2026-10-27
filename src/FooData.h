@@ -20,10 +20,10 @@ const mv::DataType ExampleType = mv::DataType(QString("Example"));
 // std::complex<float> values. 
 // =============================================================================
 
-class FOODATAPLUGIN_EXPORT FooDataPlugin : public RawData {
+class FOODATAPLUGIN_EXPORT FooData : public RawData {
 public:
-  FooDataPlugin(const PluginFactory* factory) : RawData(factory, ExampleType) {}
-  ~FooDataPlugin(void) override;
+  FooData(const PluginFactory* factory) : RawData(factory, ExampleType) {}
+  ~FooData(void) override;
 
   void init() override;
 
@@ -37,6 +37,7 @@ public:
   std::vector<std::complex<float>>& getData();
 
   void setData(QImage image, QImage phase);
+  void setData(std::vector<std::complex<float>> data) { _data = data; }
 
 private:
   std::vector<std::complex<float>> _data;       /** Data store of the plugin, this is the core of your plugin */
@@ -109,7 +110,7 @@ protected:
 class FooDataPluginFactory : public RawDataFactory {
   Q_INTERFACES(mv::plugin::RawDataFactory mv::plugin::PluginFactory)
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID   "studio.manivault.FooDataPlugin"
+    Q_PLUGIN_METADATA(IID   "studio.manivault.FooData"
       FILE  "PluginInfo.json")
 
 public:
