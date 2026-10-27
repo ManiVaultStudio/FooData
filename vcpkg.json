@@ -2,6 +2,11 @@
   "name": "foodata",
   "version": "0.1.0",
   "dependencies": [
+    "vcpkg-cmake",
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    },
     { 
       "name": "qt6",
       "features": [ "target-desktop" ]
