@@ -13,7 +13,7 @@
 using namespace mv::plugin;
 
 
-const mv::DataType ExampleType = mv::DataType(QString("Example"));
+const mv::DataType FooType = mv::DataType(QString("Foo"));
 
 // =============================================================================
 // Raw Data - holds a complex (magniture/phase) image as an array of 
@@ -22,7 +22,7 @@ const mv::DataType ExampleType = mv::DataType(QString("Example"));
 
 class FOODATAPLUGIN_EXPORT FooData : public RawData {
 public:
-  FooData(const PluginFactory* factory) : RawData(factory, ExampleType) {}
+  FooData(const PluginFactory* factory) : RawData(factory, FooType) {}
   ~FooData(void) override;
 
   void init() override;
@@ -34,10 +34,12 @@ public:
    */
   mv::Dataset<mv::DatasetImpl> createDataSet(const QString& guid = "") const override;
 
-  std::vector<std::complex<float>>& getData();
+  std::vector<std::complex<float>>& getData() {return _data; };
+  const std::vector<std::complex<float>>& getData() const { return _data; }
 
   void setData(QImage image, QImage phase);
   void setData(std::vector<std::complex<float>> data) { _data = data; }
+  size_t getNumPoints() const { return _data.size(); }
 
 private:
   std::vector<std::complex<float>> _data;       /** Data store of the plugin, this is the core of your plugin */
@@ -45,12 +47,14 @@ private:
 
 // =============================================================================
 // Data Set
+// Derive the implementation from DatasetImpl. 
+// At minimum, implement the abstract data and selection contrac
 // =============================================================================
 
-class FOODATAPLUGIN_EXPORT ComplexSet : public mv::DatasetImpl {
+class FOODATAPLUGIN_EXPORT Foo : public mv::DatasetImpl {
 public:
-  ComplexSet(QString dataName, const QString& guid = "");
-  ~ComplexSet() override;
+  Foo(QString dataName, const QString& guid = "");
+  ~Foo() override;
 
   /**
    * Create subset and specify where the subset will be placed in the data hierarchy

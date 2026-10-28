@@ -24,11 +24,7 @@ void FooData::init() {
  * Create a new dataset linking back to the original raw data
  */
 Dataset<DatasetImpl> FooData::createDataSet(const QString& guid /*= ""*/) const {
-  return new ComplexSet(getName(), guid);
-}
-
-std::vector<std::complex<float>>& FooData::getData() {
-  return _data;
+  return new Foo(getName(), guid);
 }
 
 /**
@@ -46,50 +42,50 @@ void FooData::setData(QImage image, QImage phase) {
   }
 }
 
-ComplexSet::ComplexSet(QString dataName, const QString& guid /*= ""*/) :
+Foo::Foo(QString dataName, const QString& guid /*= ""*/) :
   DatasetImpl(dataName, true, guid) {
 }
 
-ComplexSet::~ComplexSet() {
+Foo::~Foo() {
 }
 
-Dataset<DatasetImpl> ComplexSet::createSubsetFromSelection(const QString& guiName, const Dataset<DatasetImpl>& parentDataSet /*= Dataset<DatasetImpl>()*/, const bool& visible /*= true*/) const {
-  return mv::data().createSubsetFromSelection(getSelection<ComplexSet>(), const_cast<ComplexSet*>(this), guiName, parentDataSet, visible);
+Dataset<DatasetImpl> Foo::createSubsetFromSelection(const QString& guiName, const Dataset<DatasetImpl>& parentDataSet /*= Dataset<DatasetImpl>()*/, const bool& visible /*= true*/) const {
+  return mv::data().createSubsetFromSelection(getSelection<Foo>(), const_cast<Foo*>(this), guiName, parentDataSet, visible);
 }
 
-Dataset<DatasetImpl> ComplexSet::copy() const {
-  auto copySet = new ComplexSet(getRawDataName());
+Dataset<DatasetImpl> Foo::copy() const {
+  auto copySet = new Foo(getRawDataName());
 
   copySet->_indices = _indices;
 
   return copySet;
 }
 
-std::vector<std::uint32_t>& ComplexSet::getSelectionIndices() {
+std::vector<std::uint32_t>& Foo::getSelectionIndices() {
   return _indices;
 }
 
-void ComplexSet::setSelectionIndices(const std::vector<std::uint32_t>& indices) {
+void Foo::setSelectionIndices(const std::vector<std::uint32_t>& indices) {
   _indices = indices;
 }
 
-bool ComplexSet::canSelect() const {
+bool Foo::canSelect() const {
   return getRawData<FooData>()->getData().size() >= 1;
 }
 
-bool ComplexSet::canSelectAll() const {
+bool Foo::canSelectAll() const {
   return canSelect() && (getSelectionSize() < getRawData<FooData>()->getData().size());
 }
 
-bool ComplexSet::canSelectNone() const {
+bool Foo::canSelectNone() const {
   return canSelect() && (getSelectionSize() >= 1);
 }
 
-bool ComplexSet::canSelectInvert() const {
+bool Foo::canSelectInvert() const {
   return canSelect();
 }
 
-void ComplexSet::selectAll() {
+void Foo::selectAll() {
   // Get reference to selection indices
   auto& selectionIndices = getSelectionIndices();
 
@@ -104,7 +100,7 @@ void ComplexSet::selectAll() {
   events().notifyDatasetDataSelectionChanged(this);
 }
 
-void ComplexSet::selectNone() {
+void Foo::selectNone() {
   // Clear selection indices
   getSelectionIndices().clear();
 
@@ -112,7 +108,7 @@ void ComplexSet::selectNone() {
   events().notifyDatasetDataSelectionChanged(this);
 }
 
-void ComplexSet::selectInvert() {
+void Foo::selectInvert() {
   // Get reference to selection indices
   auto& selectionIndices = getSelectionIndices();
 
