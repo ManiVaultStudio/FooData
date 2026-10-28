@@ -132,6 +132,10 @@ void Foo::selectInvert() {
   events().notifyDatasetDataSelectionChanged(this);
 }
 
+void Foo::setData(std::vector<std::complex<float>> data) {
+  getRawData<FooData>()->setData(data);
+}
+
 // =============================================================================
 // Plugin Factory 
 // =============================================================================
