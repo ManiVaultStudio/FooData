@@ -136,6 +136,10 @@ void Foo::setData(std::vector<std::complex<float>> data) {
   getRawData<FooData>()->setData(data);
 }
 
+size_t Foo::getNumPoints() const {
+  return getRawData<FooData>()->getNumPoints();
+}
+
 // =============================================================================
 // Plugin Factory 
 // =============================================================================

@@ -104,6 +104,7 @@ public: // Selection
   void selectInvert() override;
 
   void setData(std::vector<std::complex<float>> data);
+  size_t getNumPoints() const;
 
 protected:
   std::vector<unsigned int>   _indices;      /** Indices into the raw data, if this dataset is just a subset */
