@@ -5,7 +5,7 @@ option(MV_UNITY_BUILD "Combine target source files into batches for faster compi
 # -----------------------------------------------------------------------------
 # ExampleData Plugin
 # -----------------------------------------------------------------------------
-PROJECT("FooDataPlugin" LANGUAGES CXX)
+PROJECT("FooData" LANGUAGES CXX)
 
 # -----------------------------------------------------------------------------
 # CMake Options and Setup
@@ -95,8 +95,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ManiVault::PointData)
 # (as well as the dynamic link library on Windows) 
 # in addition to the dynamic plugins libraries so that other plugins can link against this new data type
 # more info: https://cmake.org/cmake/help/book/mastering-cmake/chapter/Install.html
-install(TARGETS "FooDataPlugin"
-    EXPORT FooDataPlugin
+install(TARGETS "FooData"
+    EXPORT FooData
     RUNTIME DESTINATION Plugins COMPONENT PLUGINS # Windows .dll
     LIBRARY DESTINATION Plugins COMPONENT PLUGINS # Linux/Mac .so
     ARCHIVE DESTINATION lib     COMPONENT LINKLIB # Windows .lib
@@ -108,8 +108,8 @@ install(TARGETS "FooDataPlugin"
 # -----------------------------------------------------------------------------
 
 # Generate a .cmake file that can be imported from the install to enable plugin building
-install(EXPORT "FooDataPlugin"
-        FILE FooDataPlugin.cmake
+install(EXPORT "FooData"
+        FILE FooData.cmake
         NAMESPACE FooData::
         DESTINATION cmake/foodata
         COMPONENT FOODATA_EXPORT
@@ -118,20 +118,20 @@ install(EXPORT "FooDataPlugin"
 include(CMakePackageConfigHelpers)
 
 write_basic_package_version_file(
-  FooDataPluginConfigVersion.cmake
+  FooDataConfigVersion.cmake
   VERSION 0.1.0
   COMPATIBILITY SameMajorVersion
 )
 
 configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/FooDataPluginConfig.cmake.in"   # input
-    "${CMAKE_CURRENT_BINARY_DIR}/FooDataPluginConfig.cmake"        # output
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/FooDataConfig.cmake.in"   # input
+    "${CMAKE_CURRENT_BINARY_DIR}/FooDataConfig.cmake"        # output
     INSTALL_DESTINATION cmake
 )
 
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/FooDataPluginConfig.cmake
-              ${CMAKE_CURRENT_BINARY_DIR}/FooDataPluginConfigVersion.cmake
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/FooDataConfig.cmake
+              ${CMAKE_CURRENT_BINARY_DIR}/FooDataConfigVersion.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/FooData )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
