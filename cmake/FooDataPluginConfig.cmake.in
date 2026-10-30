@@ -1,0 +1,8 @@
+
+@PACKAGE_INIT@  
+set_and_check(FooDataPlugin_INSTALL_DIR "${PACKAGE_PREFIX_DIR}")
+set(FooDataPlugin_INCLUDE_DIR "${FooDataPlugin_INSTALL_DIR}/$<CONFIGURATION>/include")
+set(FooDataPlugin_LIB_DIR "${FooDataPlugin_INSTALL_DIR}/$<CONFIGURATION>/lib")
+set_and_check(FooData_CMAKE_DIR "${PACKAGE_PREFIX_DIR}/cmake/foodata" CACHE INTERNAL "")
+include("${ManiVault_CMAKE_DIR}/FooDataPlugin.cmake")
+check_required_components(FooDataPlugin)

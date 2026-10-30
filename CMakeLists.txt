@@ -102,6 +102,30 @@ install(TARGETS ${PROJECT_NAME}
     PUBLIC_HEADER DESTINATION include/${PROJECT_NAME} COMPONENT HEADERS
 )
 
+# -----------------------------------------------------------------------------
+# Generate Package Files
+# -----------------------------------------------------------------------------
+
+# Generate a .cmake file that can be imported from the install to enable plugin building
+install(EXPORT "FooDataPluginPublicExport"
+        FILE FooDataPlugin.cmake
+        NAMESPACE FooData::
+        DESTINATION cmake/foodata
+        COMPONENT FOODATA_EXPORT
+)
+
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/FooDataPluginConfig.cmake.in"   # input
+    "${CMAKE_CURRENT_BINARY_DIR}/FooDataPluginConfig.cmake"        # output
+    INSTALL_DESTINATION cmake
+)
+write_basic_package_version_file()
+
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/FooConfig.cmake
+              ${CMAKE_CURRENT_BINARY_DIR}/FooConfigVersion.cmake
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/FooData )
+
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND "${CMAKE_COMMAND}"
         --install ${CMAKE_CURRENT_BINARY_DIR}
