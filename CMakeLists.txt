@@ -95,7 +95,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ManiVault::PointData)
 # (as well as the dynamic link library on Windows) 
 # in addition to the dynamic plugins libraries so that other plugins can link against this new data type
 # more info: https://cmake.org/cmake/help/book/mastering-cmake/chapter/Install.html
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS "FooDataPluginExport"
     RUNTIME DESTINATION Plugins COMPONENT PLUGINS # Windows .dll
     LIBRARY DESTINATION Plugins COMPONENT PLUGINS # Linux/Mac .so
     ARCHIVE DESTINATION lib     COMPONENT LINKLIB # Windows .lib
@@ -107,7 +107,7 @@ install(TARGETS ${PROJECT_NAME}
 # -----------------------------------------------------------------------------
 
 # Generate a .cmake file that can be imported from the install to enable plugin building
-install(EXPORT "FooDataPluginPublicExport"
+install(EXPORT "FooDataPluginExport"
         FILE FooDataPlugin.cmake
         NAMESPACE FooData::
         DESTINATION cmake/foodata
