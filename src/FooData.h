@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FooDataPlugin_export.h"
+#include "FooData_export.h"
 
 #include "RawData.h"
 #include "Set.h"
@@ -20,7 +20,7 @@ const mv::DataType FooType = mv::DataType(QString("Foo"));
 // std::complex<float> values. 
 // =============================================================================
 
-class FOODATAPLUGIN_EXPORT FooData : public RawData {
+class FOODATA_EXPORT FooData : public RawData {
 public:
   FooData(const PluginFactory* factory) : RawData(factory, FooType) {}
   ~FooData(void) override;
@@ -51,7 +51,7 @@ private:
 // At minimum, implement the abstract data and selection contrac
 // =============================================================================
 
-class FOODATAPLUGIN_EXPORT Foo : public mv::DatasetImpl {
+class FOODATA_EXPORT Foo : public mv::DatasetImpl {
 public:
   Foo(QString dataName, const QString& guid = "");
   ~Foo() override;
