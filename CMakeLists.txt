@@ -96,6 +96,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ManiVault::PointData)
 # in addition to the dynamic plugins libraries so that other plugins can link against this new data type
 # more info: https://cmake.org/cmake/help/book/mastering-cmake/chapter/Install.html
 install(TARGETS "FooDataPlugin"
+    EXPORT FooDataPlugin
     RUNTIME DESTINATION Plugins COMPONENT PLUGINS # Windows .dll
     LIBRARY DESTINATION Plugins COMPONENT PLUGINS # Linux/Mac .so
     ARCHIVE DESTINATION lib     COMPONENT LINKLIB # Windows .lib
