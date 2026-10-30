@@ -130,8 +130,8 @@ configure_package_config_file(
 )
 
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/FooConfig.cmake
-              ${CMAKE_CURRENT_BINARY_DIR}/FooConfigVersion.cmake
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/FooPluginConfig.cmake
+              ${CMAKE_CURRENT_BINARY_DIR}/FooPluginConfigVersion.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/FooData )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
