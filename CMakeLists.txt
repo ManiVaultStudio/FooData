@@ -126,13 +126,13 @@ write_basic_package_version_file(
 configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/FooDataConfig.cmake.in"   # input
     "${CMAKE_CURRENT_BINARY_DIR}/FooDataConfig.cmake"        # output
-    INSTALL_DESTINATION cmake
+    INSTALL_DESTINATION cmake/foodata
 )
 
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/FooDataConfig.cmake
               ${CMAKE_CURRENT_BINARY_DIR}/FooDataConfigVersion.cmake
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/FooData )
+        DESTINATION cmake/foodata )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND "${CMAKE_COMMAND}"
