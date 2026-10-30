@@ -31,22 +31,27 @@ namespace mv {
  }
 }
 
+  class MyDataFactory  {
+
+  }
+  MyDataFactory --() PluginFactory
+  MyDataFactory --() RawDataFactory
+
  class MyData {
-  <<RawData>>
   _data : ~D~
   createDataSet() Dataset~DatasetImpl~ 
-
-
  }
+
+  MyData --() RawData
 
  class MyDataset {
-  <<DatasetImpl>>
 
  }
+
+  MyDataset --() DatasetImpl
 
 namespace mv {
  class DataHierarchyItem {
-
  }
 }
 
@@ -57,7 +62,7 @@ namespace mv {
 }
 
 
- AbstractDataManager "1"--> "*" MyDataset : creates<br/> destroys<br/> owns 
+ AbstractDataManager "1"--> "*" MyDataset : creates<br/> destroys<br/> owns </br> using MyDataFactory 
  AbstractDataHierarchyManager "1" --o "many" DataHierarchyItem : manages
  DataHierarchyItem "1" --o "1" MyDataset : positions in data hierarchy
  MyData --> MyDataset : creates
