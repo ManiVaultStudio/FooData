@@ -71,7 +71,7 @@ jobs:
       - name: Select Xcode for Mac only
         if: startsWith(runner.os, 'macOS')
         run: |
-          sudo xcode-select -switch /Applications/Xcode_${{matrix.build-xcode-version}}.app
+          sudo xcode-select -switch /Applications/Xcode_${{matrix.xcode}}.app
           
       - name: Start ssh key agent
         uses: webfactory/ssh-agent@v0.9.0
@@ -86,11 +86,9 @@ jobs:
 
       - name: Windows build
         if: startsWith(runner.os, 'Windows')
-        uses: ManiVaultStudio/github-actions/conan_windows_build@feature/vcpkg_artifactory
+        uses: ManiVaultStudio/github-actions/vcpkg_windows_build@feature/vcpkg_artifactory
         with:
-          conan-visual-version: ${{matrix.build-cversion}}
-          conan-visual-runtime: ${{matrix.build-runtime}}
-          conan-build-type: ${{matrix.build-config}}
+          vcpkg-preset: ${{matrix.preset}}
           vcpkg-artifactory-url: ${{secrets.VCPKG_ARTIFACTORY_URL}}
           vcpkg-artifactory-token: ${{secrets.VCPKG_ARTIFACTORY_TOKEN}}
           sentry-upload: startsWith(github.ref, 'refs/heads/release/')
@@ -101,31 +99,17 @@ jobs:
 
       - name: Linux build
         if: startsWith(matrix.os, 'ubuntu')
-        uses: ManiVaultStudio/github-actions/conan_linuxmac_build@feature/vcpkg_artifactory
+        uses: ManiVaultStudio/github-actions/vcpkg_linuxmac_build@feature/vcpkg_artifactory
         with:
-          conan-compiler: ${{matrix.build-compiler}}
-          conan-cc: ${{matrix.build-cc}}
-          conan-cxx: ${{matrix.build-cxx}}
-          conan-compiler-version: ${{matrix.build-cversion}}
-          conan-libcxx-version: ${{matrix.build-libcxx}}
-          conan-build-type: ${{matrix.build-config}}
-          conan-build-os: ${{matrix.build-os}}
+          vcpkg-preset: ${{matrix.preset}}
           vcpkg-artifactory-url: ${{secrets.VCPKG_ARTIFACTORY_URL}}
           vcpkg-artifactory-token: ${{secrets.VCPKG_ARTIFACTORY_TOKEN}}          
-          build-arch: ${{matrix.build-arch}}
 
           
       - name: Mac build
         if: startsWith(matrix.os, 'macos')
-        uses: ManiVaultStudio/github-actions/conan_linuxmac_build@feature/vcpkg_artifactory
+        uses: ManiVaultStudio/github-actions/vcpkg_linuxmac_build@feature/vcpkg_artifactory
         with:
-          conan-compiler: ${{matrix.build-compiler}}
-          conan-cc: ${{matrix.build-cc}}
-          conan-cxx: ${{matrix.build-cxx}}
-          conan-compiler-version: ${{matrix.build-cversion}}
-          conan-libcxx-version: ${{matrix.build-libcxx}}
-          conan-build-type: ${{matrix.build-config}}
-          conan-build-os: ${{matrix.build-os}}
-          build-arch: ${{matrix.build-arch}}
+          vcpkg-preset: ${{matrix.preset}}
           vcpkg-artifactory-url: ${{secrets.VCPKG_ARTIFACTORY_URL}}
           vcpkg-artifactory-token: ${{secrets.VCPKG_ARTIFACTORY_TOKEN}}   
