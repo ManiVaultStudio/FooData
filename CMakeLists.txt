@@ -111,7 +111,7 @@ install(TARGETS "FooData"
 install(EXPORT "FooData"
         FILE FooData.cmake
         NAMESPACE FooData::
-        DESTINATION cmake/foodata
+        DESTINATION cmake/mv
         COMPONENT FOODATA_EXPORT
 )
 
@@ -126,13 +126,13 @@ write_basic_package_version_file(
 configure_package_config_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/FooDataConfig.cmake.in"   # input
     "${CMAKE_CURRENT_BINARY_DIR}/FooDataConfig.cmake"        # output
-    INSTALL_DESTINATION cmake/foodata
+    INSTALL_DESTINATION cmake/mv
 )
 
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/FooDataConfig.cmake
               ${CMAKE_CURRENT_BINARY_DIR}/FooDataConfigVersion.cmake
-        DESTINATION cmake/foodata )
+        DESTINATION cmake/mv )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND "${CMAKE_COMMAND}"
