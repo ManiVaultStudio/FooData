@@ -3,6 +3,6 @@
 set_and_check(FooData_INSTALL_DIR "${PACKAGE_PREFIX_DIR}")
 set(FooData_INCLUDE_DIR "${FooData_INSTALL_DIR}/$<CONFIGURATION>/include")
 set(FooData_LIB_DIR "${FooData_INSTALL_DIR}/$<CONFIGURATION>/lib")
-set_and_check(FooData_CMAKE_DIR "${PACKAGE_PREFIX_DIR}/cmake/foodata" CACHE INTERNAL "")
+set_and_check(FooData_CMAKE_DIR "${PACKAGE_PREFIX_DIR}/cmake/mv" CACHE INTERNAL "")
 include("${ManiVault_CMAKE_DIR}/FooData.cmake")
 check_required_components(FooData)
