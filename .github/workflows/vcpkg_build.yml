@@ -73,32 +73,19 @@ jobs:
         run: |
           sudo xcode-select -switch /Applications/Xcode_${{matrix.xcode}}.app
           
-      - name: Windows build
-        if: startsWith(runner.os, 'Windows')
-        uses: ManiVaultStudio/github-actions/vcpkg_windows_build@feature/vcpkg_artifactory
+      - name: Common build
+        uses: ManiVaultStudio/github-actions/vcpkg_common_build@feature/vcpkg_artifactory
         with:
           vcpkg-preset: ${{matrix.preset}}
           vcpkg-artifactory-url: ${{secrets.VCPKG_ARTIFACTORY_URL}}
           vcpkg-artifactory-token: ${{secrets.VCPKG_ARTIFACTORY_TOKEN}}
-          sentry-upload: startsWith(github.ref, 'refs/heads/release/')
-          sentry-url: ${{secrets.LKEB_SENTRY_URL }}
-          sentry-org: ${{secrets.LKEB_SENTRY_ORG }}
-          sentry-project: ${{secrets.LKEB_SENTRY_PROJECT }}
-          sentry-auth-token: ${{secrets.LKEB_SENTRY_AUTH_TOKEN }}
 
-      - name: Linux build
-        if: startsWith(matrix.os, 'ubuntu')
-        uses: ManiVaultStudio/github-actions/vcpkg_linuxmac_build@feature/vcpkg_artifactory
+      - name: Sentry upload
+        if: startsWith(runner.os, 'Windows')
+        uses: ManiVaultStudio/github-actions/sentry@feature/vcpkg_artifactory
         with:
-          vcpkg-preset: ${{matrix.preset}}
-          vcpkg-artifactory-url: ${{secrets.VCPKG_ARTIFACTORY_URL}}
-          vcpkg-artifactory-token: ${{secrets.VCPKG_ARTIFACTORY_TOKEN}}          
-
-          
-      - name: Mac build
-        if: startsWith(matrix.os, 'macos')
-        uses: ManiVaultStudio/github-actions/vcpkg_linuxmac_build@feature/vcpkg_artifactory
-        with:
-          vcpkg-preset: ${{matrix.preset}}
-          vcpkg-artifactory-url: ${{secrets.VCPKG_ARTIFACTORY_URL}}
-          vcpkg-artifactory-token: ${{secrets.VCPKG_ARTIFACTORY_TOKEN}}   
+            sentry-upload: startsWith(github.ref, 'refs/heads/release/')
+            sentry-url: ${{secrets.LKEB_SENTRY_URL }}
+            sentry-org: ${{secrets.LKEB_SENTRY_ORG }}
+            sentry-project: ${{secrets.LKEB_SENTRY_PROJECT }}
+            sentry-auth-token: ${{secrets.LKEB_SENTRY_AUTH_TOKEN }}
